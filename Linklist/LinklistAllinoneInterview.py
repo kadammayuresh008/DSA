@@ -88,42 +88,88 @@ class Linklist:
             return 
         Linklist.print_rec(head.next)
         print(head.val,end=" ")
+        
+    def reverseLinklistws(head):
+        prev=None
+        curr=head
+        next_1=curr.next
+        while(curr):
+            next_1=curr.next 
+            curr.next=prev
+            prev=curr
+            curr=next_1
+        return prev
+        
+    # Plaindrome in o(n) space
+    def is_palindorme(head):
+        ptr=head
+        ans=[]
+        while(ptr):
+            ans.append(ptr.val)
+            ptr=ptr.next
+        ptr2=head
+        count=0 
+        while(ptr2):
+            if(ptr2.val!=ans[len(ans)-1-count]):
+                return False
+            ptr2=ptr2.next
+            count+=1
+        return True
+        
+    # Palindrome in o(1) space
+    def is_pali(head):
+        if(head==None):
+            return 0
+        Linklist.is_pali(head.next)
+        print(head.val)
+        
     
             
 head=Linklist(1)  
 head=Linklist.Create_Linklist(2,head)
 head=Linklist.Create_Linklist(3,head)
-head=Linklist.Create_Linklist(4,head)
-head=Linklist.Create_Linklist(5,head)
-head=Linklist.Create_Linklist(6,head)
-head=Linklist.Create_Linklist(7,head)
+head=Linklist.Create_Linklist(1,head)
+# head=Linklist.Create_Linklist(3,head)
+# head=Linklist.Create_Linklist(4,head)
+# head=Linklist.Create_Linklist(5,head)
+# head=Linklist.Create_Linklist(6,head)
+# head=Linklist.Create_Linklist(7,head)
 
 print("The linklist is:")
 Linklist.Print_Linklist()
 
-print("The Reverse printing of linklist is:")
-Linklist.print_rec(head)
-print("\n")
+# print("The Reverse printing of linklist is:")
+# Linklist.print_rec(head)
+# print("\n")
 
 
 
-print("The middle element is:")
-ele=Linklist.middleElement()
-print(ele)
-print("\n")
+# print("The middle element is:")
+# ele=Linklist.middleElement()
+# print(ele)
+# print("\n")
 
 
-print("Delete middle element of linklist")
-head=Linklist.DeleteMiddleElement()
-Linklist.Print_Linklist()
+# print("Delete middle element of linklist")
+# head=Linklist.DeleteMiddleElement()
+# Linklist.Print_Linklist()
 
-print("Reverse linklist")
-head=Linklist.reverseLinklist(head)
-Linklist.Print_Linklist()
+# print("Reverse linklist")
+# head=Linklist.reverseLinklist(head)
+# Linklist.Print_Linklist()
 
             
-print("Delete linklist")
-head=Linklist.deleteLinklist(head)
-Linklist.Print_Linklist()
+# print("Delete linklist")
+# head=Linklist.deleteLinklist(head)
+# Linklist.Print_Linklist()
+
+# print("Reverse linklist")
+# head=Linklist.reverseLinklistws(head)
+# Linklist.Print_Linklist()
+
+print("Linklist is Palindrome:")
+Linklist.is_pali(head)
+
+
 
 
