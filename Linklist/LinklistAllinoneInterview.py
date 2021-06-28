@@ -22,11 +22,14 @@ class Linklist:
     
     # Print Linklist
     def Print_Linklist():
-        ptr=head.next
-        while(ptr!=None):
-            print(ptr.val,end=" ")
-            ptr=ptr.next 
-        print("\n")
+        if(head):
+            ptr=head
+            while(ptr!=None):
+                print(ptr.val,end=" ")
+                ptr=ptr.next 
+            print("\n")
+        else:
+            print("List is empty.")
         
     # to find middle of linklist 
     def middleElement():
@@ -50,10 +53,44 @@ class Linklist:
                 slow=slow.next
             ptr.next=slow.next
             return head
+            
+            
+    # delete Linklist
+    def deleteLinklist(head):
+        if(head):
+            pre=head
+            head=head.next
+            while(head!=None):
+                pre=None 
+                pre=head
+                head=head.next
+            return head
+            
+            
+    # To reverse linklist using stack in o(n)
+    def reverseLinklist(head):
+        if(head):
+            stack=[]
+            ptr=head
+            ptr2=head
+            while(ptr!=None):
+                stack.append(ptr.val)
+                ptr=ptr.next
+            while(stack):
+                x=stack.pop(-1)
+                head.val=x
+                head=head.next
+            return ptr2
+            
+    # to print Linklist in reverse order
+    def print_rec(head):
+        if(head==None):
+            return 
+        Linklist.print_rec(head.next)
+        print(head.val,end=" ")
     
             
-head=Linklist()  
-head=Linklist.Create_Linklist(1,head)
+head=Linklist(1)  
 head=Linklist.Create_Linklist(2,head)
 head=Linklist.Create_Linklist(3,head)
 head=Linklist.Create_Linklist(4,head)
@@ -64,12 +101,29 @@ head=Linklist.Create_Linklist(7,head)
 print("The linklist is:")
 Linklist.Print_Linklist()
 
+print("The Reverse printing of linklist is:")
+Linklist.print_rec(head)
+print("\n")
+
+
 
 print("The middle element is:")
 ele=Linklist.middleElement()
 print(ele)
+print("\n")
+
 
 print("Delete middle element of linklist")
 head=Linklist.DeleteMiddleElement()
 Linklist.Print_Linklist()
+
+print("Reverse linklist")
+head=Linklist.reverseLinklist(head)
+Linklist.Print_Linklist()
+
             
+print("Delete linklist")
+head=Linklist.deleteLinklist(head)
+Linklist.Print_Linklist()
+
+
