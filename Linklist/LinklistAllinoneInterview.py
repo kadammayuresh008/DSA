@@ -116,12 +116,58 @@ class Linklist:
             count+=1
         return True
         
-    # Palindrome in o(1) space
-    def is_pali(head):
-        if(head==None):
-            return 0
-        Linklist.is_pali(head.next)
-        print(head.val)
+    # # Palindrome in o(1) space
+    # def is_pali(left,right):
+    #     if(right==None):
+    #         return 0
+    #     first=Linklist.is_pali(left,right.next)
+    #     if(first==None):
+    #         return 1
+    #     second=(right.val==left.val)
+    #     left=left.next 
+    #     return second
+
+
+    def duplicate(head):
+        if(head):
+            li=[]
+            ptr=head
+            prev=ptr 
+            while(ptr):
+                if(ptr.val not in li):
+                    li.append(ptr.val)
+                else:
+                    prev.next=ptr.next 
+                prev=ptr 
+                ptr=ptr.next
+                
+    
+    
+    def detect_loop(head):
+        fast=head
+        slow=head
+        while(fast and fast.next):
+            slow=slow.next 
+            fast=fast.next.next
+            if(fast.data==slow.data):
+                return True 
+        return False
+        
+    def Remove_loop(head):
+        fast=head
+        slow=head
+        while(fast and fast.next):
+            slow=slow.next 
+            fast=fast.next.next
+            if(fast.data==slow.data):
+                slow=head
+                while(slow.next.data!=fast.next.data):
+                    slow=slow.next
+                    fast=fast.next 
+                fast.next=None 
+                return head 
+        return head
+
         
     
             
@@ -167,9 +213,13 @@ Linklist.Print_Linklist()
 # head=Linklist.reverseLinklistws(head)
 # Linklist.Print_Linklist()
 
-print("Linklist is Palindrome:")
-Linklist.is_pali(head)
+# print("Linklist is Palindrome:")
+# x=Linklist.is_pali(head,head)
+# print(x)
 
+print("Remove Duplicate")
+Linklist.duplicate(head)
+Linklist.Print_Linklist()
 
 
 
